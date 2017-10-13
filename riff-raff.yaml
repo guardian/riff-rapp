@@ -26,4 +26,4 @@ deployments:
   riff-rapp-lambda-update:
     template: riff-rapp
     actions: [updateLambda]
-    dependencies: [jriff-rapp-cfn]
+    dependencies: [riff-rapp-cfn]
