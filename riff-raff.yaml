@@ -5,7 +5,7 @@ deployments:
   riff-rapp:
     type: aws-lambda
     parameters:
-      bucket: riff-rapp
+      bucket: gu-jr-microservice-workshop-dist
       functionNames: [riff-rapp]
       fileName: riff-rapp.zip
       prefixStack: false
