@@ -1,15 +1,20 @@
 stacks: [playground]
 regions: [eu-west-1]
-
-deployments:
+templates:
   riff-rapp:
     type: aws-lambda
+    app: riff-rapp
+    contentDirectory: riff-rapp
     parameters:
       bucket: gu-jr-microservice-workshop-dist
-      functionNames: [riff-rapp]
+      functionNames: [riff-rapp-]
       fileName: riff-rapp.zip
       prefixStack: false
-    dependencies: [riff-rapp-cfn]
+
+deployments:
+  riff-rapp-upload:
+    template: riff-rapp
+    actions: [uploadLambda]
   riff-rapp-cfn:
     type: cloud-formation
     app: riff-rapp
@@ -17,3 +22,8 @@ deployments:
       prependStackToCloudFormationStackName: false
       cloudFormationStackName: riff-rapp
       templatePath: cfn.yaml
+    dependencies: [riff-rapp-upload]
+  riff-rapp-lambda-update:
+    template: riff-rapp
+    actions: [updateLambda]
+    dependencies: [jriff-rapp-cfn]
