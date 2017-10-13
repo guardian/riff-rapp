@@ -1,0 +1,19 @@
+stacks: [playground]
+regions: [eu-west-1]
+
+deployments:
+  riff-rapp:
+    type: aws-lambda
+    parameters:
+      bucket: riff-rapp
+      functionNames: [riff-rapp]
+      fileName: riff-rapp.zip
+      prefixStack: false
+    dependencies: [riff-rapp-cfn]
+  riff-rapp-cfn:
+    type: cloud-formation
+    app: riff-rapp
+    parameters:
+      prependStackToCloudFormationStackName: false
+      cloudFormationStackName: riff-rapp
+      templatePath: cfn.yaml
