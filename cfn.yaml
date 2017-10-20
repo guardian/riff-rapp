@@ -9,7 +9,7 @@ Parameters:
   App:
     Description: Application name
     Type: String
-    Default: riff-raff
+    Default: riff-rapp
   Stage:
     Description: Stage name
     Type: String
